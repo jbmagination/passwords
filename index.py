@@ -1,8 +1,8 @@
 import random
 import hashlib
 
-#password = input('enter hash: ')
-password = '4417a30dc8c6b53f5e2e2b9051159348036017f9061e8ace1f966a1ab58fbedd'
+password = input('enter hash: ')
+#password = '4417a30dc8c6b53f5e2e2b9051159348036017f9061e8ace1f966a1ab58fbedd'
 
 done = []
 letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s', 't', 'u', 'v', 'w', 'x', 'y', 'z']
@@ -20,8 +20,13 @@ while finished == False:
     test = test + random.choice(letters)
 
     finalised = hashlib.sha256(bytes(test, encoding='utf-8')).hexdigest()
+    if test in done:
+        print(f"{test} already found")
+        continue
+    
     if finalised == password:
         print(f"the password is {test}")
+        finished = True
     else:
-        print(f"{test} ({finalised}) is not the password")
-        done.apped(test)
+        #print(f"{test} ({finalised}) is not the password")
+        done.append(test)
